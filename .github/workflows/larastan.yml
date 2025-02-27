@@ -1,0 +1,13 @@
+name: Tests
+on: [ push ]
+
+jobs:
+  larastan:
+    runs-on: [linux, php]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: composer install --prefer-dist --no-ansi --no-interaction --no-progress
+
+      - name: PHPStan checks
+        run: ./vendor/bin/phpstan analyse
